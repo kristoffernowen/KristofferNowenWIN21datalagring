@@ -1,0 +1,30 @@
+﻿<Application x:Class="Customer_Case_System.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Customer_Case_System"
+             xmlns:view="clr-namespace:Customer_Case_System.Views"
+             xmlns:viewModel="clr-namespace:Customer_Case_System.Models.ViewModels"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Templates/MenuItem.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+
+
+            <DataTemplate DataType="{x:Type viewModel:RegisterCustomerViewModel}">
+                <view:RegisterCustomerView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:RegisterCaseViewModel}">
+                <view:RegisterCaseView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:DisplayCustomersViewModel}">
+                <view:DisplayCustomersView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:DisplayCasesViewModel}">
+                <view:DisplayCasesView />
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

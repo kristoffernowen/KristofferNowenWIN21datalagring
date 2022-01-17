@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="Customer_Case_System.Views.RegisterCustomerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Customer_Case_System.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+          <Label Content="Register Customer" Foreground="Azure"></Label>  
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ListView Background="Aquamarine">
+
+            </ListView>
+            <ListView Grid.Row="1" Background="CornflowerBlue">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock  Text="Gatunamn" Margin="5"></TextBlock>
+                        <TextBlock  Text="Postnummer" Margin="5"></TextBlock>
+                        <TextBlock  Text="Stad" Margin="5"></TextBlock>
+                        <TextBlock  Text="Land" Margin="5"></TextBlock>
+                    </StackPanel>
+
+                    <StackPanel x:Name="spanelInputRegisterAddress"  Grid.Column="1">
+                        <TextBox x:Name="tboxStreetName" Width="100" Margin="5"></TextBox>
+                        <TextBox x:Name="tboxPostalCode" Margin="5"></TextBox>
+                        <TextBox x:Name="tboxCity" Margin="5"></TextBox>
+                        <TextBox x:Name="tboxCountry" Margin="5"></TextBox>
+                    </StackPanel>
+                    
+                    <StackPanel x:Name="spanelOutputReaddAddress"  Grid.Column="4">
+                        <TextBlock x:Name="tblockStreetName" Width="200" Margin="5"></TextBlock>
+                        <TextBox x:Name="tblockPostalCode" Margin="5"></TextBox>
+                        <TextBox x:Name="tblockCity" Margin="5"></TextBox>
+                        <TextBox x:Name="tblockCountry" Margin="5"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2">
+                        <Button Content="Lägg till" Margin="5" Click="Button_Click"> </Button>
+                        <Button Content="Läs nedan adress id från databas" Margin="5" Click="Button_Click_1"> </Button>
+                        <TextBox x:Name="tboxReadAddressId"></TextBox>
+                    </StackPanel>
+                </Grid>
+                
+            </ListView>
+            <ListView Grid.Row="2" Background="Chartreuse">
+
+            </ListView>
+        </Grid>
+    </Grid>
+</UserControl>
