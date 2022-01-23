@@ -72,7 +72,7 @@
                         <TextBox x:Name="tboxDescription" Width="200" Height="75" TextWrapping="Wrap" Margin="0 5"></TextBox>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.Column="1" Width="200">
-                        <ListBox x:Name="listboxStatus" SelectionChanged="ListboxStatus_OnSelectionChanged" SelectionMode="Single" Width="200">
+                        <ListBox x:Name="listboxStatus"  SelectionMode="Single" Width="200">
                             <ListBoxItem x:Name="item1"  >Ej påbörjat</ListBoxItem>
                             <ListBoxItem x:Name="item2">Under behandling</ListBoxItem>
                             <ListBoxItem x:Name="item3">avslutat</ListBoxItem>
@@ -80,6 +80,7 @@
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.Column="3" Margin="100 50">
                         <Button Content="Lägg till ärende" Click="Button_Click" FontSize="20" Padding="5" />
+                        <TextBlock x:Name="tblockResultCase" ></TextBlock>
                     </StackPanel>
                 </Grid>
 

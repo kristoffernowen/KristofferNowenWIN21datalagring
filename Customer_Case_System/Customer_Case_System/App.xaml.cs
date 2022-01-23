@@ -13,30 +13,29 @@ namespace Customer_Case_System
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            using (var context = new SqlContext())
+            using (var sqlContext = new SqlContext())
             {
-                context.Database.EnsureCreated();
+                sqlContext.Database.EnsureCreated();
 
-                var statusUnprocessed = context.StatusOfCases.FirstOrDefault(b => b.Id == StatusOfCase.StatusUnprocessed);
+                var statusUnprocessed = sqlContext.StatusOfCases.FirstOrDefault(x => x.Id == StatusOfCase.StatusUnprocessed);
                 if (statusUnprocessed == null)
                 {
-                    context.StatusOfCases.Add(new StatusOfCase { Id = StatusOfCase.StatusUnprocessed, StatusOfCase1 = nameof(StatusOfCase.StatusUnprocessed) });
+                    sqlContext.StatusOfCases.Add(new StatusOfCase { Id = StatusOfCase.StatusUnprocessed, StatusOfCase1 = nameof(StatusOfCase.StatusUnprocessed) });
                 }
 
-                var statusBeingProcessed = context.StatusOfCases.FirstOrDefault(b => b.Id == StatusOfCase.StatusBeingProcessed);
+                var statusBeingProcessed = sqlContext.StatusOfCases.FirstOrDefault(x => x.Id == StatusOfCase.StatusBeingProcessed);
                 if (statusBeingProcessed == null)
                 {
-                    context.StatusOfCases.Add(new StatusOfCase { Id = StatusOfCase.StatusBeingProcessed, StatusOfCase1 = nameof(StatusOfCase.StatusBeingProcessed) });
+                    sqlContext.StatusOfCases.Add(new StatusOfCase { Id = StatusOfCase.StatusBeingProcessed, StatusOfCase1 = nameof(StatusOfCase.StatusBeingProcessed) });
                 }
 
-                var statusClosed = context.StatusOfCases.FirstOrDefault(b => b.Id == StatusOfCase.StatusClosed);
+                var statusClosed = sqlContext.StatusOfCases.FirstOrDefault(x => x.Id == StatusOfCase.StatusClosed);
                 if (statusClosed == null)
                 {
-                    context.StatusOfCases.Add(new StatusOfCase { Id = StatusOfCase.StatusClosed, StatusOfCase1 = nameof(StatusOfCase.StatusClosed) });
+                    sqlContext.StatusOfCases.Add(new StatusOfCase { Id = StatusOfCase.StatusClosed, StatusOfCase1 = nameof(StatusOfCase.StatusClosed) });
                 }
 
-
-                context.SaveChanges();
+                sqlContext.SaveChanges();
             }
 
             base.OnStartup(e);

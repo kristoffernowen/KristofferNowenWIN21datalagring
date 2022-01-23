@@ -25,54 +25,11 @@ namespace Customer_Case_System.Views
     public partial class DisplayCustomersView : UserControl
     {
         private SqlActionUnit _sqlActionUnit = new();
-        private ObservableCollection<DisplayCustomer> _displayCustomers;
-        private List<DisplayCustomer> displayCustomers;
-        private ObservableCollection<Customer> _customers;
 
         public DisplayCustomersView()
         {
             InitializeComponent();
             lvDisplayCustomer.ItemsSource = _sqlActionUnit.GetCustomersWithEmail().ToList();
         }
-
-        // private void btnDisplayAddresses_Click(object sender, RoutedEventArgs e)
-        // {
-        //     var addressesToDisplayInList = _sqlActionUnit.ReadAddressesFromDatabase().ToList();
-        //
-        //     lvAddresses.ItemsSource = addressesToDisplayInList;
-        // }
-
-        private void btnDisplayCustomers_Click(object sender, RoutedEventArgs e)
-        {
-            // var customersToDisplayInList = _sqlActionUnit.ReadCustomersFromDatabase().ToList();
-            //
-            // lvDisplayCustomer.ItemsSource =customersToDisplayInList;
-
-
-            //  var customersDisplay = _sqlActionUnit.GetCustomersWithPhone();
-            lvDisplayCustomer.ItemsSource = _sqlActionUnit.GetCustomersWithPhone();
-        }
-
-        // public void DisplayAddresses()
-        // {
-        //     var addressesToDisplayInList = _sqlActionUnit.ReadAddressesFromDatabase().ToList();
-        //
-        //     lvAddresses.ItemsSource = addressesToDisplayInList;
-        // }
-        // private void btnDelete_Click(object sender, RoutedEventArgs e)
-        // {
-        //     var obj = (Button)sender;
-        //     var item = (Address)obj.DataContext;
-        //
-        //     _sqlActionUnit.DeleteAddress(item.Id);
-        //     DisplayAddresses();
-        // }
-
-
-
-
-
-
-
     }
 }

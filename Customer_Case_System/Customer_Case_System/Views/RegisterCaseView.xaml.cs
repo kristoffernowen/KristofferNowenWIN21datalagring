@@ -28,94 +28,36 @@ namespace Customer_Case_System.Views
         {
             InitializeComponent();
             listboxCustomers.ItemsSource = _sqlActionUnit.ReadCustomersFromDatabase().ToList();
+            tblockResultCase.Text = "";
         }
-
-        private void btnShowCustomersInDatabase(object sender, RoutedEventArgs e)
-        {
-            // var customersToDisplayInList = _sqlActionUnit.ReadCustomersFromDatabase().ToList();
-            //
-            // lvDisplayCustomer.ItemsSource =customersToDisplayInList;
-
-            // var customersWithContactList = _sqlActionUnit.GetCustomersWithContact();
-            // lvDisplayCustomer.ItemsSource = customersWithContactList;
-
-            //  var customersDisplay = _sqlActionUnit.GetCustomersWithPhone();
-            // lvDisplayCustomerInCase.ItemsSource = _sqlActionUnit.ReadCustomersFromDatabase().ToList();
-        }
-
-        // private void btnTest_Click(object sender, RoutedEventArgs e)
-        // {
-        //     var checkedItem = listboxStatus.SelectedItem;
-        //
-        //     if (checkedItem.Equals(item1))
-        //     {
-        //         tblockListBoxOk.Text = "1";
-        //         StatusOfCase = 0;
-        //     }
-        //     else if (listboxStatus.SelectedItem.Equals(item2))
-        //     {
-        //         tblockListBoxOk.Text = "2";
-        //         StatusOfCase = 2;
-        //     }
-        //     else if (listboxStatus.SelectedItem.Equals(item3))
-        //     {
-        //         tblockListBoxOk.Text = "3";
-        //         StatusOfCase = 3;
-        //     }
-        //     else
-        //         tblockListBoxOk.Text = "4";
-        // }
-
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var caseHeader = tboxCaseHeader.Text;
-            
-            var customer = (Customer)listboxCustomers.SelectedItem;
-
-            var description = tboxDescription.Text;
-            int checkedStatusIdItem = 0;
-            if (listboxStatus.SelectedItem.Equals(item1))
-                checkedStatusIdItem = 1;
-            else if (listboxStatus.SelectedItem.Equals(item2))
-                checkedStatusIdItem = 2;
-            else if (listboxStatus.SelectedItem.Equals(item3))
-                checkedStatusIdItem = 3;
-
-            var caseNumberId = _sqlActionUnit.RegisterCaseNumber(tboxCaseHeader.Text, customer.Id);
-            _sqlActionUnit.RegisterCaseDetails(caseNumberId, tboxDescription.Text, checkedStatusIdItem);
-            
-        }
-
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            var checkedItem = listboxStatus.SelectedItem;
-            if (listboxStatus.SelectedItem.Equals(item1))
+            try
             {
-                var status1 = "Unprocessed";
-                _sqlActionUnit.RegisterStatusOfCase(1, status1);
+                var caseHeader = tboxCaseHeader.Text;
+
+                var customer = (Customer)listboxCustomers.SelectedItem;
+
+                var description = tboxDescription.Text;
+
+                int checkedStatusIdItem = 0;
+                if (listboxStatus.SelectedItem.Equals(item1))
+                    checkedStatusIdItem = 1;
+                else if (listboxStatus.SelectedItem.Equals(item2))
+                    checkedStatusIdItem = 2;
+                else if (listboxStatus.SelectedItem.Equals(item3))
+                    checkedStatusIdItem = 3;
+
+                var caseNumberId = _sqlActionUnit.RegisterCaseNumber(tboxCaseHeader.Text, customer.Id);
+                _sqlActionUnit.RegisterCaseDetails(caseNumberId, tboxDescription.Text, checkedStatusIdItem);
+
+                tblockResultCase.Text = "Ärende troligen tillagt";
             }
-            else if (listboxStatus.SelectedItem.Equals(item2))
+            catch
             {
-                var status1 = "Being processed";
-                _sqlActionUnit.RegisterStatusOfCase(2, status1);
+                tblockResultCase.Text = "Du kanske lämnade något fält tomt eller inte markerade kund eller status";
             }
-            else if (listboxStatus.SelectedItem.Equals(item3))
-            {
-                var status1 = "Closed";
-                _sqlActionUnit.RegisterStatusOfCase(3, status1);
-            }
-            else{}
-
-
-
-        }
-
-
-       
-
-        private void ListboxStatus_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
             
         }
     }

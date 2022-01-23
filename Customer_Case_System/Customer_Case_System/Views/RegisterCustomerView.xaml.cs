@@ -26,45 +26,30 @@ namespace Customer_Case_System.Views
         public RegisterCustomerView()
         {
             InitializeComponent();
+            tblockResultCustomer.Text = "";
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var addressExists =_sqlActionUnit.RegisterAddress(tboxStreetName.Text, tboxPostalCode.Text, tboxCity.Text, tboxCountry.Text);
-            // if (addressExists)
-            //     tblockStreetName.Text = "Adressen fanns redan";
-            // else
-            // {
-            //     tblockStreetName.Text = "Adressen lades till";
-            // }
-        }
-
-        // private void Button_Click_1(object sender, RoutedEventArgs e)
-        // {
-        //    var addressToBeRead = _sqlActionUnit.ReadAddressFromDatabase(Convert.ToInt32(tboxReadAddressId.Text));
-        //    tblockStreetName.Text = addressToBeRead.StreetName;
-        //    tblockPostalCode.Text = addressToBeRead.PostalCode;
-        //    tblockCity.Text = addressToBeRead.City;
-        //    tblockCountry.Text = addressToBeRead.Country;
-        // }
-
-        // private void Button_Click_2(object sender, RoutedEventArgs e)
-        // {
-        //     var address = new Address
-        //     {
-        //         StreetName = tboxStreetName.Text, PostalCode = tboxPostalCode.Text, City = tboxCity.Text,
-        //         Country = tboxCountry.Text
-        //     };
-        //     _sqlActionUnit.UpdateAddress(Convert.ToInt32(tboxReadAddressId.Text), address);
-        // }
 
         private void RegisterCustomer(object sender, RoutedEventArgs e)
         {
-            var addressId = _sqlActionUnit.RegisterAddress(tboxStreetName.Text, tboxPostalCode.Text, tboxCity.Text, tboxCountry.Text);
-            var customerId = _sqlActionUnit.RegisterCustomerToDatabase(tboxFirstName.Text, tboxLastName.Text, addressId);
-            _sqlActionUnit.RegisterContactInfoToDatabase(tboxEmail.Text, tboxPrimaryPhone.Text, tboxSecondaryPhone.Text, customerId);
-        }
+            try
+            {
+                var addressId = _sqlActionUnit.RegisterAddress(tboxStreetName.Text,
+                    tboxPostalCode.Text,
+                    tboxCity.Text, tboxCountry.Text);
+                var customerId =
+                    _sqlActionUnit.RegisterCustomerToDatabase(tboxFirstName.Text,
+                        tboxLastName.Text, addressId);
+                _sqlActionUnit.RegisterContactInfoToDatabase(tboxEmail.Text,
+                    tboxPrimaryPhone.Text,
+                    tboxSecondaryPhone.Text, customerId);
 
-        
+                tblockResultCustomer.Text = "Kund troligen tillagd, om du inte försökt göra dubletter";
+            }
+            catch
+            {
+                tblockResultCustomer.Text =
+                    "Du har fyllt i något fel, postnummer t ex har endast fem siffror utan mellanslag";
+            }
+        }
     }
 }

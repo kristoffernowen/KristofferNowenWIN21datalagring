@@ -16,24 +16,20 @@ namespace Customer_Case_System.DatabaseActionUnits
         private readonly SqlContext _sqlContext = new SqlContext();
 
         public int RegisterAddress(string streetName, string postalCode, string city, string country)
-        {   // returned a bool
-
+        {   
             var addressToBeSaved = new Address { StreetName = streetName, PostalCode = postalCode, City = city, Country = country };
-            var _databaseAddressSpecimen = _sqlContext.Addresses.Where(x =>
+            var databaseAddressSpecimen = _sqlContext.Addresses.Where(x =>
                 x.StreetName == streetName && x.PostalCode == postalCode && x.City == city && x.Country == country).FirstOrDefault();
-            if (_databaseAddressSpecimen == null)
-            {
 
+            if (databaseAddressSpecimen == null)
+            {
                 _sqlContext.Addresses.Add(addressToBeSaved);
                 _sqlContext.SaveChanges();
 
                 return addressToBeSaved.Id;
             }
-
-            else
-            {
-                return 0;
-            }
+            
+            return 0;
         }
 
         public int RegisterCustomerToDatabase(string firstName, string lastName, int addressId)
@@ -55,9 +51,14 @@ namespace Customer_Case_System.DatabaseActionUnits
         public void RegisterContactInfoToDatabase(string email, string primaryPhoneNumber, string secondaryPhoneNumber,
             int customerId)
         {
+            var contactInfoInDatabase = _sqlContext.ContactInfos.Where(x => x.Email == email).FirstOrDefault();
             var contactInfoToBeSaved = new ContactInfo { Email = email, PrimaryPhoneNumber = primaryPhoneNumber, SecondaryPhoneNumber = secondaryPhoneNumber, CustomerId = customerId };
-            _sqlContext.ContactInfos.Add(contactInfoToBeSaved);
-            _sqlContext.SaveChanges();
+
+            if (contactInfoInDatabase == null)
+            {
+                _sqlContext.ContactInfos.Add(contactInfoToBeSaved);
+                _sqlContext.SaveChanges();
+            }
         }
 
         public int RegisterCaseNumber(string caseHeader, int customerId)
@@ -78,52 +79,11 @@ namespace Customer_Case_System.DatabaseActionUnits
             _sqlContext.SaveChanges();
         }
 
-        public void RegisterStatusOfCase(int id, string status)
-        {
-            var saveThis = new StatusOfCase { Id = id, StatusOfCase1 = status };
-            _sqlContext.StatusOfCases.Add(saveThis);
-            _sqlContext.SaveChanges();
-        }
-
-        public Address ReadAddressFromDatabase(int id)
-        {
-            return _sqlContext.Addresses.SingleOrDefault(x => x.Id == id);
-        }
-
-        public IEnumerable<Address> ReadAddressesFromDatabase()
-        {
-            return _sqlContext.Addresses;
-        }
-
         public IEnumerable<Customer> ReadCustomersFromDatabase()
         {
             return _sqlContext.Customers;
         }
-
-        public Customer ReadCustomerFromDatabase(int id)
-        {
-            return _sqlContext.Customers.SingleOrDefault(x => x.Id == id);
-        }
-
-        public ContactInfo ReadContactInfoFromDatabase(int id)
-        {
-            return _sqlContext.ContactInfos.SingleOrDefault(x => x.CustomerId == id);
-        }
-
-
-
-
-
-
-        public List<CustomerWithPhone> GetCustomersWithPhone() =>
-            _sqlContext.Customers.Join(
-                _sqlContext.ContactInfos,
-                customer => customer.Id,
-                contactInfo => contactInfo.CustomerId,
-                (customer, contactInfo) => new CustomerWithPhone
-                { Name = customer.FirstName, PrimaryPhone = contactInfo.PrimaryPhoneNumber }
-            ).ToList();
-
+       
         public IEnumerable<CustomerWithEmail> GetCustomersWithEmail()
         {
             var customersWithEmail = (from c in _sqlContext.Customers
@@ -160,8 +120,4 @@ namespace Customer_Case_System.DatabaseActionUnits
             return casesWithCustomerInfo;
         }
     }
-
-
-
-
 }

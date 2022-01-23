@@ -1,12 +1,4 @@
 ﻿
-DROP TABLE CaseDetails
-DROP TABLE CaseNumbers
-DROP TABLE Administrators
-DROP TABLE StatusOfCases
-DROP TABLE ContactInfo
-DROP TABLE Customers
-DROP TABLE Addresses
-
 CREATE TABLE Addresses (
 	Id int not null identity primary key,
 	StreetName nvarchar(50) not null,
@@ -17,8 +9,8 @@ CREATE TABLE Addresses (
 GO
 CREATE TABLE Customers (
 	Id int not null identity primary key,
-	FirstName varchar(50) not null,
-	LastName varchar(50),
+	FirstName nvarchar(50) not null,
+	LastName nvarchar(50)not null,
 	AddressId int references Addresses(Id)
 )
 GO
