@@ -10,23 +10,39 @@
           <Label Content="Register Customer" Foreground="Azure"></Label>  
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <ListView Background="Aquamarine">
-
+            <ListView Grid.Row="0" Background="Aquamarine">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock  Text="Förnamn" Margin="5"></TextBlock>
+                        <TextBlock  Text="Efternamn           " Margin="5"></TextBlock>
+                    </StackPanel>
+                    <StackPanel x:Name="spanelInputRegisterCustomer"  Grid.Column="1">
+                        <TextBox x:Name="tboxFirstName" Width="100" Margin="5"></TextBox>
+                        <TextBox x:Name="tboxLastName" Margin="5"></TextBox>
+                        
+                    </StackPanel>
+                </Grid>
             </ListView>
             <ListView Grid.Row="1" Background="CornflowerBlue">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="3*"></ColumnDefinition>
-                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
-                        <TextBlock  Text="Gatunamn" Margin="5"></TextBlock>
+                        <TextBlock  Text="Gatunamn           " Margin="5"></TextBlock>
                         <TextBlock  Text="Postnummer" Margin="5"></TextBlock>
                         <TextBlock  Text="Stad" Margin="5"></TextBlock>
                         <TextBlock  Text="Land" Margin="5"></TextBlock>
@@ -48,14 +64,39 @@
 
                     <StackPanel Grid.Column="2">
                         <Button Content="Lägg till" Margin="5" Click="Button_Click"> </Button>
-                        <Button Content="Läs nedan adress id från databas" Margin="5" Click="Button_Click_1"> </Button>
+                        <Button Content="Läs nedan adressid från databas" Margin="5" Click="Button_Click_1"> </Button>
                         <TextBox x:Name="tboxReadAddressId"></TextBox>
+                        <Button Content="Uppdatera ovan adressid från databas" Margin="5" Click="Button_Click_2" ></Button>
                     </StackPanel>
                 </Grid>
                 
             </ListView>
             <ListView Grid.Row="2" Background="Chartreuse">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock  Text="E-postadress" Margin="5"></TextBlock>
+                        <TextBlock  Text="Telefonnummer 1" Margin="5"></TextBlock>
+                        <TextBlock  Text="Telefonnummer 2" Margin="5"></TextBlock>
+                    </StackPanel>
+                    <StackPanel x:Name="spanelInputRegisterContactInfo"  Grid.Column="1">
+                        <TextBox x:Name="tboxEmail" Width="100" Margin="5"></TextBox>
+                        <TextBox x:Name="tboxPrimaryPhone" Margin="5"></TextBox>
+                        <TextBox x:Name="tboxSecondaryPhone" Margin="5"></TextBox>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <Rectangle Width="250"></Rectangle>
 
+                    </StackPanel>
+                    <StackPanel Grid.Column="3">
+                        <Button Content="Lägg till kund" Margin="50" Click="RegisterCustomer" ></Button>
+                    </StackPanel>
+                </Grid>
             </ListView>
         </Grid>
     </Grid>

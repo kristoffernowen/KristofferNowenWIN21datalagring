@@ -61,8 +61,4 @@ CREATE TABLE CaseDetails (
 	AdministratorId int references Administrators(Id)
 )
 
-CREATE TABLE ExtraTestTable (
-	Id int not null identity primary key,
-	HoppName nvarchar(10) not null 
-)
 
