@@ -39,24 +39,24 @@ namespace Customer_Case_System.Views
             // }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-           var addressToBeRead = _sqlActionUnit.ReadAddressFromDatabase(Convert.ToInt32(tboxReadAddressId.Text));
-           tblockStreetName.Text = addressToBeRead.StreetName;
-           tblockPostalCode.Text = addressToBeRead.PostalCode;
-           tblockCity.Text = addressToBeRead.City;
-           tblockCountry.Text = addressToBeRead.Country;
-        }
+        // private void Button_Click_1(object sender, RoutedEventArgs e)
+        // {
+        //    var addressToBeRead = _sqlActionUnit.ReadAddressFromDatabase(Convert.ToInt32(tboxReadAddressId.Text));
+        //    tblockStreetName.Text = addressToBeRead.StreetName;
+        //    tblockPostalCode.Text = addressToBeRead.PostalCode;
+        //    tblockCity.Text = addressToBeRead.City;
+        //    tblockCountry.Text = addressToBeRead.Country;
+        // }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            var address = new Address
-            {
-                StreetName = tboxStreetName.Text, PostalCode = tboxPostalCode.Text, City = tboxCity.Text,
-                Country = tboxCountry.Text
-            };
-            _sqlActionUnit.UpdateAddress(Convert.ToInt32(tboxReadAddressId.Text), address);
-        }
+        // private void Button_Click_2(object sender, RoutedEventArgs e)
+        // {
+        //     var address = new Address
+        //     {
+        //         StreetName = tboxStreetName.Text, PostalCode = tboxPostalCode.Text, City = tboxCity.Text,
+        //         Country = tboxCountry.Text
+        //     };
+        //     _sqlActionUnit.UpdateAddress(Convert.ToInt32(tboxReadAddressId.Text), address);
+        // }
 
         private void RegisterCustomer(object sender, RoutedEventArgs e)
         {

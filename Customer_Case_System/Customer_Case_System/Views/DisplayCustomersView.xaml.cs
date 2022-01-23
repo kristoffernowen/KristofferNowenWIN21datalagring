@@ -32,14 +32,25 @@ namespace Customer_Case_System.Views
         public DisplayCustomersView()
         {
             InitializeComponent();
-            
+            lvDisplayCustomer.ItemsSource = _sqlActionUnit.GetCustomersWithEmail().ToList();
         }
 
-        private void btnDisplayAddresses_Click(object sender, RoutedEventArgs e)
-        {
-            var addressesToDisplayInList = _sqlActionUnit.ReadAddressesFromDatabase().ToList();
+        // private void btnDisplayAddresses_Click(object sender, RoutedEventArgs e)
+        // {
+        //     var addressesToDisplayInList = _sqlActionUnit.ReadAddressesFromDatabase().ToList();
+        //
+        //     lvAddresses.ItemsSource = addressesToDisplayInList;
+        // }
 
-            lvAddresses.ItemsSource = addressesToDisplayInList;
+        private void btnDisplayCustomers_Click(object sender, RoutedEventArgs e)
+        {
+            // var customersToDisplayInList = _sqlActionUnit.ReadCustomersFromDatabase().ToList();
+            //
+            // lvDisplayCustomer.ItemsSource =customersToDisplayInList;
+
+
+            //  var customersDisplay = _sqlActionUnit.GetCustomersWithPhone();
+            lvDisplayCustomer.ItemsSource = _sqlActionUnit.GetCustomersWithPhone();
         }
 
         // public void DisplayAddresses()
@@ -57,22 +68,11 @@ namespace Customer_Case_System.Views
         //     DisplayAddresses();
         // }
 
-        
 
-        private void btnDisplayCustomers_Click(object sender, RoutedEventArgs e)
-        {
-            // var customersToDisplayInList = _sqlActionUnit.ReadCustomersFromDatabase().ToList();
-            //
-            // lvDisplayCustomer.ItemsSource =customersToDisplayInList;
 
-            // var customersWithContactList = _sqlActionUnit.GetCustomersWithContact();
-            // lvDisplayCustomer.ItemsSource = customersWithContactList;
 
-          //  var customersDisplay = _sqlActionUnit.GetCustomersWithPhone();
-            lvDisplayCustomer.ItemsSource = _sqlActionUnit.GetCustomersWithPhone();
-        }
-        
 
-        
+
+
     }
 }

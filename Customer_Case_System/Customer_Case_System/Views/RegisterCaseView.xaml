@@ -10,7 +10,6 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <ListView Grid.Row="0" Background="Aquamarine">
@@ -19,51 +18,35 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <StackPanel>
-                        <TextBlock  Text="Rubrik" Margin="5"></TextBlock>
-                        <TextBlock  Text="Id på kund          " Margin="5"></TextBlock>
+                    <StackPanel Grid.Column="0" Grid.Row="0">
+                        <TextBlock  Text="Rubrik" Margin="5 "></TextBlock>
                     </StackPanel>
-                    <StackPanel x:Name="spanelInputRegisterCase"  Grid.Column="1">
-                        <TextBox x:Name="tboxCaseHeader" Width="100" Margin="5"></TextBox>
-                        <TextBox x:Name="tboxCustomerId" Margin="5"></TextBox>
-
+                    <StackPanel Grid.Column="0" Grid.Row="1" Width="150" >
+                        <TextBlock  Text="Välj kund att knyta ärendet till"  TextWrapping="Wrap" Margin="5">
+                        </TextBlock>
                     </StackPanel>
-                    <Grid Grid.Row="1" Grid.ColumnSpan="3">
-                        <ScrollViewer Height="50" Width="400"  VerticalScrollBarVisibility="Visible">
-                            <ListView x:Name="lvDisplayCustomerInCase" DataContext="Customer_Case_System.Models.Customer" Grid.Row="1" >
-                                <ListView.ItemTemplate >
+                    
+                    <StackPanel Grid.Row="0" Grid.Column="1" x:Name="spanelInputRegisterCase" >
+                        <TextBox x:Name="tboxCaseHeader" Width="200" HorizontalAlignment="Right" Margin="5"></TextBox>
+                    </StackPanel>
+                    <Grid Grid.Row="1" Grid.Column="1" >
+                        <ScrollViewer Height="75" Width="200"  VerticalScrollBarVisibility="Visible">
+                            <ListBox x:Name="listboxCustomers" DataContext="Customer_Case_System.Models.Customer" >
+                                <ListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Margin="0 5"  >
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="auto" />
-                                                <ColumnDefinition Width="auto" />
-                                            </Grid.ColumnDefinitions>
-
-                                            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Stretch" Width="700" Background="Beige" >
-                                                <!-- <TextBlock    Text="{Binding Id}" FontSize="20" Margin="5"/> -->
-                                                <TextBlock    Text="{Binding FirstName}" FontSize="20" Margin="5"/>
-                                                <TextBlock    Text="{Binding LastName}" FontSize="20" Margin="5"/>
-                                                <TextBlock    Text="{Binding Id}" FontSize="20" Margin="5"/>
-                                                <Button x:Name="btnChooseCustomer" Content="Välj" HorizontalContentAlignment="Right" Background="BlueViolet" Grid.Column="1" Margin="5 0 5 0" FontSize="15" />
-                                            </StackPanel>
-
-
-                                        </Grid>
+                                        <TextBlock Text="{Binding FirstName}"></TextBlock>
                                     </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                         </ScrollViewer>
                     </Grid>
-                    <StackPanel Grid.Row="1" Grid.Column="3">
-                        <Button Content="Visa kunder" Click="btnShowCustomersInDatabase"></Button>
-                    </StackPanel>
                 </Grid>
             </ListView>
             <ListView Grid.Row="1" Background="CornflowerBlue">
@@ -74,33 +57,34 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0">
-                        <TextBlock  Text="Beskrivning     " Margin="5"></TextBlock>
-                        <TextBlock  Text="Datum skapat" Margin="5"></TextBlock>
-                        <TextBlock  Text="Datum senast ändrat" Margin="5"></TextBlock>
-                        <TextBlock  Text="status" Margin="5"></TextBlock>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Column="0" Width="150">
+                        <TextBlock  Text="Beskrivning"  Margin="5"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="0">
+                        <TextBlock  Text="Status" Margin="5"></TextBlock>
                     </StackPanel>
 
-                    <StackPanel x:Name="spanelInputRegisterAddress"  Grid.Column="1">
-                        <TextBox x:Name="tboxDescription" Width="100" Margin="5"></TextBox>
-                        <TextBox  Margin="5"></TextBox>
-                        <TextBox Margin="5"></TextBox>
-                        
-                        <ListBox x:Name="listboxStatus" SelectionMode="Single">
-                            <ListBoxItem x:Name="item1">Ej påbörjat</ListBoxItem>
+                    <StackPanel  Grid.Column="1" Width="200">
+                        <TextBox x:Name="tboxDescription" Width="200" Height="75" TextWrapping="Wrap" Margin="0 5"></TextBox>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Width="200">
+                        <ListBox x:Name="listboxStatus" SelectionChanged="ListboxStatus_OnSelectionChanged" SelectionMode="Single" Width="200">
+                            <ListBoxItem x:Name="item1"  >Ej påbörjat</ListBoxItem>
                             <ListBoxItem x:Name="item2">Under behandling</ListBoxItem>
                             <ListBoxItem x:Name="item3">avslutat</ListBoxItem>
                         </ListBox>
-                        <Button x:Name="btnTest" Content="testa" Click="btnTest_Click"></Button>
-                        <TextBlock x:Name="tblockListBoxOk" Text="kdfk"></TextBlock>
                     </StackPanel>
-                    <StackPanel Grid.Column="3">
-                        <Button Content="Lägg till ärende" Margin="50" Click="Button_Click"  ></Button>
+                    <StackPanel Grid.Row="1" Grid.Column="3" Margin="100 50">
+                        <Button Content="Lägg till ärende" Click="Button_Click" FontSize="20" Padding="5" />
                     </StackPanel>
                 </Grid>
 
             </ListView>
-           
+            
         </Grid>
     </Grid>
 </UserControl>

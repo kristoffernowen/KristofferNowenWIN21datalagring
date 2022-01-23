@@ -55,19 +55,19 @@
                         <TextBox x:Name="tboxCountry" Margin="5"></TextBox>
                     </StackPanel>
                     
-                    <StackPanel x:Name="spanelOutputReaddAddress"  Grid.Column="4">
-                        <TextBlock x:Name="tblockStreetName" Width="200" Margin="5"></TextBlock>
-                        <TextBox x:Name="tblockPostalCode" Margin="5"></TextBox>
-                        <TextBox x:Name="tblockCity" Margin="5"></TextBox>
-                        <TextBox x:Name="tblockCountry" Margin="5"></TextBox>
-                    </StackPanel>
+                    <!-- <StackPanel x:Name="spanelOutputReaddAddress"  Grid.Column="4"> -->
+                    <!--     <TextBlock x:Name="tblockStreetName" Width="200" Margin="5"></TextBlock> -->
+                    <!--     <TextBox x:Name="tblockPostalCode" Margin="5"></TextBox> -->
+                    <!--     <TextBox x:Name="tblockCity" Margin="5"></TextBox> -->
+                    <!--     <TextBox x:Name="tblockCountry" Margin="5"></TextBox> -->
+                    <!-- </StackPanel> -->
 
-                    <StackPanel Grid.Column="2">
-                        <Button Content="Lägg till" Margin="5" Click="Button_Click"> </Button>
-                        <Button Content="Läs nedan adressid från databas" Margin="5" Click="Button_Click_1"> </Button>
-                        <TextBox x:Name="tboxReadAddressId"></TextBox>
-                        <Button Content="Uppdatera ovan adressid från databas" Margin="5" Click="Button_Click_2" ></Button>
-                    </StackPanel>
+                    <!-- <StackPanel Grid.Column="2"> -->
+                    <!--     <Button Content="Lägg till" Margin="5" Click="Button_Click"> </Button> -->
+                    <!--     <Button Content="Läs nedan adressid från databas" Margin="5" Click="Button_Click_1"> </Button> -->
+                    <!--     <TextBox x:Name="tboxReadAddressId"></TextBox> -->
+                    <!--     <Button Content="Uppdatera ovan adressid från databas" Margin="5" Click="Button_Click_2" ></Button> -->
+                    <!-- </StackPanel> -->
                 </Grid>
                 
             </ListView>

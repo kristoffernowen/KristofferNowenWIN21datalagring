@@ -1,4 +1,4 @@
-﻿DROP TABLE ExtraTestTable
+﻿
 DROP TABLE CaseDetails
 DROP TABLE CaseNumbers
 DROP TABLE Administrators
@@ -25,7 +25,7 @@ GO
 CREATE TABLE ContactInfo (
 	Id int not null identity primary key,
 	CustomerId int not null references Customers(Id),
-	Email varchar(100) not null,
+	Email varchar(100) not null unique,
 	PrimaryPhoneNumber varchar(10) not null,
 	SecondaryPhoneNumber varchar(10) not null,
 )
